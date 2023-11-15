@@ -1,0 +1,36 @@
+#include <Servo.h>
+
+// Define the pin where the button is connected
+const int buttonPin = 2;
+
+// Define the pin where the servo is connected
+const int servoPin = 9;
+
+Servo myServo;  // Create a servo object
+
+void setup() {
+  // Set the button pin as an input
+  pinMode(buttonPin, INPUT);
+
+  // Attach the servo to the corresponding pin
+  myServo.attach(servoPin);
+
+  // Open the serial communication
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Read the state of the button
+  int buttonState = digitalRead(buttonPin);
+
+  // If the button is pressed, move the servo
+  if (buttonState == HIGH) {
+    Serial.println("Button is pressed!");
+    myServo.write(90);  // Move the servo to 90 degrees (adjust as needed)
+    delay(500);         // Wait for the servo to reach the desired position
+  } else {
+    Serial.println("Button is not pressed.");
+    myServo.write(0);   // Move the servo to 0 degrees (adjust as needed)
+    delay(500);         // Wait for the servo to reach the desired position
+  }
+}
