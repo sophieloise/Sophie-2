@@ -1,0 +1,72 @@
+#include <Servo.h>
+
+Servo servo1; //this is the servo controlling the roof
+Servo servo2; //this is the servo controlling the witch's rotation
+Servo servo3; //this is the servo controlling the girl
+
+int input1Pin = 2; //this is the button for the roof
+int input2Pin = 3; //this is the button for the first object
+int input3Pin = 4; //second object
+int input4Pin = 5; //third object
+int input5Pin = 6; //fourth object
+
+void setup() {
+  servo1.attach(9);
+  servo2.attach(10);
+  servo3.attach(11);
+
+  pinMode (input1Pin, INPUT);
+  pinMode (input2Pin, INPUT);
+  pinMode (input3Pin, INPUT);
+  pinMode (input4Pin, INPUT);
+  pinMode (input5Pin, INPUT);
+}
+
+void loop() {
+  checkPush (2);
+  checkPush (3);
+  checkPush (4);
+  checkPush (5);
+  checkPush (6);
+
+void checkPush(int 2){ //roof
+  int buttonPushed = digitalRead(2)
+  if (buttonPushed == HIGH){
+    servo1.write(90);
+  } else {
+    servo1.write(0);
+  }
+}
+
+void checkPush(int 3){ //servo movement toward 1st object
+  int buttonPushed = digitalRead(3)
+  if (buttonPushed == HIGH){
+    servo2.write(45);
+  } else {
+    servo2.write(0);
+}
+
+void checkPush(int 4){ //servo movement toward 2nd object
+  int buttonPushed = digitalRead(4)
+  if (buttonPushed == HIGH){
+    servo2.write(90);
+  } else {
+    servo2.write(0);
+  }
+}
+
+void checkPush(int 5){ //servo movement toward 3rd object
+  int buttonPushed = digitalRead(5)
+  if (buttonPushed == HIGH){
+    servo2.write(90);
+  } else {
+    servo2.write(0);
+  }
+}
+
+void checkPush(int 6){ //servo movement toward back
+  int buttonPushed = digitalRead(6)
+  if (buttonPushed == HIGH){
+    servo1.write(180);
+  } else {
+    servo1.write(180);
