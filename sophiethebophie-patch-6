@@ -1,0 +1,66 @@
+#include <Servo.h>
+
+Servo servo1; //this is the servo controlling the roof
+Servo servo2; //this is the servo controlling the witch's rotation
+
+int input1Pin = 2; //this is the button for the roof
+int input2Pin = 3; //this is the button for the first object
+int input3Pin = 4; //second object
+int input4Pin = 5; //third object
+int input5Pin = 6; //fourth object
+
+int buttonState1 = 0;
+int buttonState2 = 0;
+int buttonState3 = 0;
+int buttonState4 = 0;
+int buttonState5 = 0;
+
+void setup() {
+  servo1.attach(9);
+  servo2.attach(10);
+
+  Serial.begin(57600);
+  pinMode (input1Pin, INPUT);
+  pinMode (input2Pin, INPUT);
+  pinMode (input3Pin, INPUT);
+  pinMode (input4Pin, INPUT);
+  pinMode (input5Pin, INPUT);
+}
+
+void loop() {
+  buttonState1 = digitalRead(input1Pin);
+  buttonState2 = digitalRead(input2Pin);
+  buttonState3 = digitalRead(input3Pin);
+  buttonState4 = digitalRead(input4Pin);
+  buttonState5 = digitalRead(input5Pin);
+
+  if (buttonState1 == HIGH && buttonState2 == LOW && buttonState3 == LOW && buttonState4 == LOW && buttonState5 == LOW){
+    servo1.write(90);
+  } else {
+    servo1.write(0);
+  }
+
+  if (buttonState1 == LOW && buttonState2 == HIGH && buttonState3 == LOW && buttonState4 == LOW && buttonState5 == LOW){
+    servo2.write(45);
+  } else {
+    servo2.write(0);
+  }
+
+  if (buttonState1 == LOW && buttonState2 == LOW && buttonState3 == HIGH && buttonState4 == LOW && buttonState5 == LOW){
+    servo2.write(45);
+  } else {
+    servo2.write(0);
+  }
+
+  if (buttonState1 == LOW && buttonState2 == LOW && buttonState3 == LOW && buttonState4 == HIGH && buttonState5 == LOW){
+    servo2.write(45);
+  } else {
+    servo2.write(0);
+  }
+
+  if (buttonState1 == LOW && buttonState2 == LOW && buttonState3 == LOW && buttonState4 == LOW && buttonState5 == HIGH){
+    servo2.write(180);
+  } else {
+    servo2.write(0);
+  }
+}
